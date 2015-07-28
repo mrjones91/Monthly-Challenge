@@ -1,8 +1,9 @@
 <head>
   <title>app01</title>
+
 </head>
 
-<body>
+<body class="text-center">
   <h1>Welcome to Meteor!</h1>
 
   {{> hello}}
@@ -12,8 +13,20 @@
   <button class="add">Click Me</button>
   <input type="button" value="no ME"/>
   <button id="minus">REDO</button>
+  <button id="twitter">Twitter?</button>
 
-  <p>You've pressed the button {{counter}} times.</p>
-  <p>TWO TIMES = {{doubleNumber}}</p>
-  <p>Crazy things = {{dN doubleNumber counter}}</p>
+  <div class="col-md-12">
+  	<div class="col-md-6">
+	  <p>You've pressed the button {{counter}} times.</p>
+	  <p>TWO TIMES = {{doubleNumber}}</p>
+	  <p>Crazy things = {{dN doubleNumber counter}}</p>
+	</div>
+	<div class="col-md-6">
+	  <p>Actual {{counter}} times.</p>
+	  <p>Actual Times TWO = {{doubleNum counter}}</p>
+	  <p>5 things = {{tN counter}}</p>
+	</div>
+</div>
+
+{{twitterUrl}}
 </template>

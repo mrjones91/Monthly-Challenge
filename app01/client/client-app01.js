@@ -18,13 +18,23 @@ if (Meteor.isClient) {
     counter: function () {
       return Session.get('counter');
     },
-
     doubleNumber: function() {
-      return Session.get('doubleNumber');
+      return Session.get('doubleNumber') * 2;
+    },
+    doubleNum: function(num) {
+      return num * 2;
+    },
+
+    tN: function(num) {
+      return num * 5;
     },
 
     dN: function(num, n2) {
       return num * 2 + n2;
+    },
+
+    twitterUrl: function() {
+      return Session.get('url');
     }
   });
 
@@ -44,6 +54,15 @@ if (Meteor.isClient) {
 
     'click .add': function() {
       Add();
+    },
+
+    'click #twitter': function() {
+      var dummydata = '';
+      Meteor.call('getURL', dummydata, function(error, result){
+        alert(result);
+        console.log(result);
+        Session.set('url', result);
+      });
     }
   });
 }
