@@ -35,6 +35,10 @@ if (Meteor.isClient) {
 
     twitterUrl: function() {
       return Session.get('url');
+    },
+
+    testerUrl: function() {
+      return Session.get('url2');
     }
   });
 
@@ -57,18 +61,31 @@ if (Meteor.isClient) {
     },
 
     'click #twitter': function() {
-      var dummydata = '';
-      Meteor.call('getURL', dummydata, function(error, result){
-        alert(result);
-        console.log(result);
-        Session.set('url', result);
-      });
-    }
-  });
-}
+      var username = 'dij_plz';
+      callStub();
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
+      // Meteor.call('getURL', username, function(error, result){
+      //   alert('aysnc? ' + result);
+      //   console.log(result + ' jill');
+      //   Session.set('url', result);
+      //   alert(result);
+      // });
+
+      // var testUrl = Meteor.call('getURL', username);
+      // Session.set('url2', testUrl)
+      // alert('booty ' + testUrl);
+    }
+    
   });
+
+  function callStub(){
+    var username = 'dij_plz';
+    Meteor.call('getURL4', username, function(error, result){
+        alert('woo');
+        alert(result);
+        console.log(result + 'jill');
+        Session.set('url', result);
+        //alert(result);
+      });
+  }
 }
