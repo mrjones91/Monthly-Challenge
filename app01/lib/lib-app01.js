@@ -29,3 +29,5 @@
 //         });
 //     }
 // });
+
+var imageUrl = 'default test';

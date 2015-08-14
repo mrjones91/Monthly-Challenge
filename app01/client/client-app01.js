@@ -38,7 +38,7 @@ if (Meteor.isClient) {
     },
 
     testerUrl: function() {
-      return Session.get('url2');
+      return imageUrl;
     }
   });
 
@@ -46,7 +46,7 @@ if (Meteor.isClient) {
   Template.hello.events({
     //functions
     //'event typeSelector'
-    'click input': function () {
+    'click button': function () {
       // increment the counter when button is clicked
       Session.set('counter', Session.get('counter') + 1);
       Session.set('doubleNumber', Session.get('counter') * 2);
@@ -61,9 +61,10 @@ if (Meteor.isClient) {
     },
 
     'click #twitter': function() {
-      var username = 'dij_plz';
-      callStub();
-
+      var usn = $('#usn').val();
+      //callStub(usn);
+      console.log('Async Test');
+      testCallAsync();
       // Meteor.call('getURL', username, function(error, result){
       //   alert('aysnc? ' + result);
       //   console.log(result + ' jill');
@@ -78,14 +79,23 @@ if (Meteor.isClient) {
     
   });
 
-  function callStub(){
-    var username = 'dij_plz';
-    Meteor.call('getURL4', username, function(error, result){
-        alert('woo');
-        alert(result);
-        console.log(result + 'jill');
+  function callStub(usn){
+    var username = { screen_name: usn};
+    Meteor.call('getURL3', username, function(error, result){
+        //alert('woo');
+        console.log('res ' + result);
+        console.log('err ' + error);
+        console.log(result + ' client');
         Session.set('url', result);
+        console.log(Session.get('url'));
         //alert(result);
       });
+  }
+
+  testCallAsync = function () {
+    Meteor.call('callAsync', function (err, res) {
+      if (err) console.log(err);
+      else console.log('response: ', res);
+    });
   }
 }
