@@ -99,7 +99,36 @@ if (Meteor.isServer) {
         }, 3000);
       }
 
+  
+//resolve the 2 meteor methods for peace in the server
       Meteor.methods({
+        test2: function(data) {
+            data = Meteor.sync( function(done) {
+              console.log('started');
+              setTimeout(function(){
+                done(null, 2001);
+              }, 3000);
+              
+              //  function(err,res) {
+
+                 console.log('wat' + data.result);
+              //done(null, res);
+              // });
+          });
+          return data.result;
+        },
+        test: function() {
+          datasets = [];
+          datasets.push({ screen_name: 'dij_plz'});
+          datasets.push({ screen_name: 'deray'});
+          datasets.push({ screen_name: 'angryblacklady'});
+          datasets.push({ screen_name: 'the_mystery_one'});
+          var randomNum = Math.floor(Math.random() * datasets.length);
+          data = datasets[randomNum]
+          console.log(randomNum);
+          twitter.getUser(data, error, success);
+          return success;
+        },
          callAsync: function () {
       var fiber = Fiber.current;
  

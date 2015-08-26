@@ -64,7 +64,12 @@ if (Meteor.isClient) {
       var usn = $('#usn').val();
       //callStub(usn);
       console.log('Async Test');
-      testCallAsync();
+      var username = { screen_name: usn};
+      Meteor.call('test2', username, function(e, d){
+        console.log('client result');
+        console.log(d);
+      });
+      //testCallAsync();
       // Meteor.call('getURL', username, function(error, result){
       //   alert('aysnc? ' + result);
       //   console.log(result + ' jill');
